@@ -3,3 +3,13 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+product_search_form:
+    path: /product/search
+    controller: App\Controller\ProductController::searchByArticle
+    methods: [GET, POST]
+
+product_search_results:
+    path: /product/search/results
+    controller: App\Controller\ProductController::showSearchResults
+    methods: [GET]

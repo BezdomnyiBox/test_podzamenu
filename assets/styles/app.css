@@ -1,3 +1,40 @@
 body {
-    background-color: skyblue;
+    background-color: rgb(255, 255, 255);
+}
+
+table thead{
+    background-color: rgb(136, 136, 136);
+}
+table tbody{
+    background-color: rgb(198, 219, 250);
+}
+
+.highlight {
+    background-color: #ffff99;
+}
+
+.legend {
+    margin-bottom: 15px;
+}
+
+.legend p {
+    margin: 5px 0;
+}
+
+.legend-color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 5px;
+    border: 1px solid #000;
+}
+
+.legend-color.exact-match {
+    background-color: #ffff99; /* Цвет для точного совпадения */
+}
+
+.legend-color.other-products {
+    background-color: rgb(198, 219, 250); /* Цвет для остальных товаров */
+    /* Можно не указывать, если фон по умолчанию белый */
 }

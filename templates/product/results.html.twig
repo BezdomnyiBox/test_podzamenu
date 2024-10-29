@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Результаты поиска{% endblock %}
+
+{% block body %}
+    <h1>Результаты поиска</h1>
+
+    {% for message in app.flashes('error') %}
+        <div style="color: red;">
+            {{ message }}
+        </div>
+    {% endfor %}
+
+
+    {% if products is not empty %}
+        <h2>Найденные товары</h2>
+
+        <div class="legend">
+            <p><span class="legend-color exact-match"></span> — Товары с точным совпадением артикула</p>
+            <p><span class="legend-color other-products"></span> — Аналоги товаров</p>
+        </div>
+
+        <table border="1" cellpadding="5" cellspacing="0">
+            <thead>
+                <tr>
+                    <th>Бренд</th>
+                    <th>Артикул</th>
+                    <th>Название</th>
+                    <th>Количество</th>
+                    <th>Цена (копейки)</th>
+                    <th>Время доставки (секунды)</th>
+                    <th>Код товара</th>
+                    <th>Код склада</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for product in products %}
+                    {% set isExactMatch = (product.article|lower == searchedArticle|lower) %}
+                    <tr {% if isExactMatch %} class="highlight";" {% endif %}>
+                        <td>{{ product.brand }}</td>
+                        <td>{{ product.article }}</td>
+                        <td>{{ product.name }}</td>
+                        <td>{{ product.quantity }}</td>
+                        <td>{{ product.price }}</td>
+                        <td>{{ product.delivery_duration }}</td>
+                        <td>{{ product.vendorId }}</td>
+                        <td>{{ product.warehouseAlias }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% elseif products is empty %}
+        <h2>Товары не найдены.</h2>
+    {% endif %}
+{% endblock %}
